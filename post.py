@@ -34,21 +34,36 @@ log = logging.getLogger(__name__)
 GRAPHICS = {
     1:  {"business": f"{CDN_BASE}/ZNSCRtmvIyuvexZb.png",
          "personal": f"{CDN_BASE}/uGCeQzietUdDgDjh.png"},
-    2:  {"business": None, "personal": None},
-    3:  {"business": None, "personal": None},
-    4:  {"business": None, "personal": None},
-    5:  {"business": None, "personal": None},
-    6:  {"business": None, "personal": None},
-    7:  {"business": None, "personal": None},
-    8:  {"business": None, "personal": None},
-    9:  {"business": None, "personal": None},
-    10: {"business": None, "personal": None},
-    11: {"business": None, "personal": None},
-    12: {"business": None, "personal": None},
-    13: {"business": None, "personal": None},
-    14: {"business": None, "personal": None},
-    15: {"business": None, "personal": None},
-    16: {"business": None, "personal": None},
+    2:  {"business": f"{CDN_BASE}/bJggCCPRqnWDxxWf.png",
+         "personal": f"{CDN_BASE}/SLQUaBqmqzgRyfmM.png"},
+    3:  {"business": f"{CDN_BASE}/czFWRoexiNTbeEDa.png",
+         "personal": f"{CDN_BASE}/sItAiBdhFmGRtHqy.png"},
+    4:  {"business": f"{CDN_BASE}/lfZcjLZXtWBHcajy.png",
+         "personal": f"{CDN_BASE}/UcwnkAZbYwvFqAoG.png"},
+    5:  {"business": f"{CDN_BASE}/rAzDsNBBHJFHYUYa.png",
+         "personal": f"{CDN_BASE}/NINitrkhuBUSZCNN.png"},
+    6:  {"business": f"{CDN_BASE}/BYdcvRSaIzxrPHBW.png",
+         "personal": f"{CDN_BASE}/QZnyrjxDEPztnDow.png"},
+    7:  {"business": f"{CDN_BASE}/WBfUAXiyigohLNsh.png",
+         "personal": f"{CDN_BASE}/LMTPIodkvCekgIls.png"},
+    8:  {"business": f"{CDN_BASE}/NNnqTygklpHRYwum.png",
+         "personal": f"{CDN_BASE}/ytCuYFcMzaQAGUXB.png"},
+    9:  {"business": f"{CDN_BASE}/uExxhZEqLYSQxXgq.png",
+         "personal": f"{CDN_BASE}/SIqIPBGxmDnosGYl.png"},
+    10: {"business": f"{CDN_BASE}/BUzDIikVFMfjkMQr.png",
+         "personal": f"{CDN_BASE}/UkPvojZSvefVAtff.png"},
+    11: {"business": f"{CDN_BASE}/NjpWdFnVcntBUEuX.png",
+         "personal": f"{CDN_BASE}/PgNcNMlyZYxKGDzY.png"},
+    12: {"business": f"{CDN_BASE}/OxwEQrclMGlkttiJ.png",
+         "personal": f"{CDN_BASE}/gdhePxrBdJdGQjKo.png"},
+    13: {"business": f"{CDN_BASE}/LngkBbxAUAuxuhKu.png",
+         "personal": f"{CDN_BASE}/sCqrQInDQNBFvvqr.png"},
+    14: {"business": f"{CDN_BASE}/rGiqpyJiTEPLCaRM.png",
+         "personal": f"{CDN_BASE}/TfcrdDjFJtvTCbVk.png"},
+    15: {"business": f"{CDN_BASE}/KnNplWsJEcnqVmUW.png",
+         "personal": f"{CDN_BASE}/GQyMgsjShlAuHMlg.png"},
+    16: {"business": f"{CDN_BASE}/DCApsLaJDbxgAyvA.png",
+         "personal": f"{CDN_BASE}/lcjDmRkBuwMOZAKY.png"},
 }
 
 LOCAL_GRAPHICS = {
@@ -446,50 +461,31 @@ def crop_to_4x5(src: str, dst: str) -> None:
 
 
 def get_image_url(day: int, post_type: str) -> str:
-    """Return CDN URL for a graphic, uploading from local if needed."""
-    # Check pre-uploaded URL first
+    """Return CDN URL for a graphic."""
     url = GRAPHICS[day][post_type]
-    if url:
-        return url
-
-    # Fall back to local file
-    graphics_dir = os.path.join(os.path.dirname(__file__), "graphics")
-    filename = LOCAL_GRAPHICS[day][post_type]
-    local_path = os.path.join(graphics_dir, filename)
-
-    if not os.path.exists(local_path):
-        raise FileNotFoundError(f"Graphic not found: {local_path}")
-
-    # Crop to 4:5 before uploading
-    cropped_path = local_path.replace(".png", "_4x5.png")
-    if not os.path.exists(cropped_path):
-        crop_to_4x5(local_path, cropped_path)
-
-    return upload_image(cropped_path)
+    if not url:
+        raise RuntimeError(f"No CDN URL configured for Day {day} {post_type}")
+    return url
 
 
 def publish_post(text: str, image_url: str, account_ids: list) -> dict:
-    """Publish a post via Zernio CLI and return the result."""
-    accounts_str = ",".join(account_ids)
-    cmd = [
-        "zernio", "posts:create",
-        "--text", text,
-        "--accounts", accounts_str,
-        "--media", image_url,
-        "--pretty"
-    ]
-    result = subprocess.run(cmd, capture_output=True, text=True)
-    output = result.stdout + result.stderr
+    """Publish a post via Zernio REST API."""
+    payload = {
+        "text": text,
+        "accounts": account_ids,
+        "media": [image_url],
+        "publishNow": True
+    }
+    resp = requests.post(
+        f"{BASE_URL}/posts",
+        headers=HEADERS,
+        json=payload,
+        timeout=60
+    )
+    if resp.status_code not in (200, 201):
+        raise RuntimeError(f"Zernio API error {resp.status_code}: {resp.text[:500]}")
 
-    # Parse JSON from output
-    start = output.find("{")
-    if start == -1:
-        raise RuntimeError(f"No JSON in Zernio response:\n{output}")
-
-    data = json.loads(output[start:])
-    if "error" in data and data.get("error") is True:
-        raise RuntimeError(f"Zernio error: {data.get('message', data)}")
-
+    data = resp.json()
     post = data.get("post", data)
     post_id = post.get("_id", "unknown")
     status = post.get("status", "unknown")
