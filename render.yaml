@@ -1,0 +1,14 @@
+services:
+  - type: cron
+    name: bill-social-poster
+    env: python
+    schedule: "45 10 * * *"   # 10:45 AM UTC = 3:45 AM MST (UTC-7)
+    buildCommand: pip install -r requirements.txt && npm install -g @zernio/cli
+    startCommand: python post.py
+    envVars:
+      - key: ZERNIO_KEY
+        value: sk_765d2e08eb72d83199029aa5274ea95ee9102aca93d8a8442b7dde6163a942e7
+      - key: IG_ACCOUNT
+        value: 6a12f65a2b2567671a2a90d6
+      - key: LI_ACCOUNT
+        value: 6a12f6ac2b2567671a2a931a
