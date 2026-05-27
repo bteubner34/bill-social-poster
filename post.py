@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Bill Teubner — 16-Day Social Media Auto-Poster
+Bill Teubner — 32-Day Social Media Auto-Poster (Days 1-32)
 Runs twice daily via Render cron jobs:
   - 3:45 AM MST (10:45 UTC) → Business post
   - 10:15 AM MST (17:15 UTC) → Personal post
@@ -30,6 +30,7 @@ log = logging.getLogger(__name__)
 CDN = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663427489423"
 
 GRAPHICS = {
+    # Days 1-16 (May 26 - June 10)
     1:  {"business": f"{CDN}/AiZiIndeiwiepVkC.png", "personal": f"{CDN}/tnkDAdNnNoATiZNi.png"},
     2:  {"business": f"{CDN}/ltuqPhMBPcUIQdas.png", "personal": f"{CDN}/yvwHPrRiIctaLAbR.png"},
     3:  {"business": f"{CDN}/NDfvvFIvBLroIDxB.png", "personal": f"{CDN}/spCiZLbJsPPOOEsA.png"},
@@ -46,6 +47,23 @@ GRAPHICS = {
     14: {"business": f"{CDN}/SxekRjGEeHSDCDVb.png", "personal": f"{CDN}/fGggbrATQKecYbMx.png"},
     15: {"business": f"{CDN}/JVSgboxBLHOEHPTh.png", "personal": f"{CDN}/oGqwZhVoFyRaXaIF.png"},
     16: {"business": f"{CDN}/XotvNducFdowJowC.png", "personal": f"{CDN}/xLYxwbUTwOEWuTOx.png"},
+    # Days 17-32 (June 11 - June 26)
+    17: {"business": f"{CDN}/haIwZfGsvDOAxOaF.png", "personal": f"{CDN}/WHGdWJYwUhijszOF.png"},
+    18: {"business": f"{CDN}/FZIcLCEygLsBOeTs.png", "personal": f"{CDN}/NinUVgrDaMtddFiW.png"},
+    19: {"business": f"{CDN}/tbhglzVjgkoFgWwL.png", "personal": f"{CDN}/LzmihnXyJRkdAAIO.png"},
+    20: {"business": f"{CDN}/wnzFbhcAJcjCTdli.png", "personal": f"{CDN}/owbnDJodiwBIOSEi.png"},
+    21: {"business": f"{CDN}/jYVAAXjRXPAfbXUX.png", "personal": f"{CDN}/ZhRQBShKXCYXwmkK.png"},
+    22: {"business": f"{CDN}/QPhdDZNWvIFaZnLW.png", "personal": f"{CDN}/sZidOqrxvQXCrfCR.png"},
+    23: {"business": f"{CDN}/hbYygjKAXfexZRcY.png", "personal": f"{CDN}/PQWOPsXmHzuEjQZi.png"},
+    24: {"business": f"{CDN}/mCoQaalVUXHoZJDR.png", "personal": f"{CDN}/AmFETMaZWmroVqaT.png"},
+    25: {"business": f"{CDN}/vQAGqhaTupNMNQhg.png", "personal": f"{CDN}/pnuNkxXbyrhHPUzq.png"},
+    26: {"business": f"{CDN}/HdMgQXLETKnYciAI.png", "personal": f"{CDN}/XIhwJgDwmsinvAXo.png"},
+    27: {"business": f"{CDN}/jdZvTjWNcBaawtrT.png", "personal": f"{CDN}/OjnofbULvkJNUtOV.png"},
+    28: {"business": f"{CDN}/WzMZTnJGuOIynjHj.png", "personal": f"{CDN}/AfHNCWKMjpWtVJSc.png"},
+    29: {"business": f"{CDN}/zFFfPiHIRrmOeUcS.png", "personal": f"{CDN}/sQYecoUDlKmArEaq.png"},
+    30: {"business": f"{CDN}/JMNcgdkUAIMsSMBe.png", "personal": f"{CDN}/RkEXMTGlnBUuqwTv.png"},
+    31: {"business": f"{CDN}/ubisGtbCqnAsZLJh.png", "personal": f"{CDN}/QciQgAgURGhirEoi.png"},
+    32: {"business": f"{CDN}/oNFhYXxyrhJydExb.png", "personal": f"{CDN}/ICUhFgjaEzdPrOfk.png"},
 }
 
 # ── Post Copy ─────────────────────────────────────────────────────────────────
@@ -80,7 +98,7 @@ CONTENT = {
     },
     8: {
         "business": "\"You do not need more time. You need more focus.\" \u2014 Dan Martell\n\nDan Martell is right. I see so many marketing teams burning out trying to be everywhere at once. They are churning out mediocre content on six different platforms and wondering why nothing is converting.\n\nContent marketing in 2026 is not about volume. It is about density. One deeply researched, highly valuable piece of content will outperform 50 generic AI-generated blog posts every time.\n\nAt THAT Agency, our content strategy is simple: solve the customer's actual problem. If you do that, the algorithm will reward you. Stop trading focus for volume.\n\n#ContentMarketing #DanMartell #MarketingStrategy #Focus #THATAgency",
-        "personal": "Riding out in the Colorado plains. When you are on horseback in wide open country, your perspective shifts. You stop looking at the ground right in front of you and start looking at the horizon.\n\nIn business, it is too easy to get trapped looking at the ground. The daily emails, the immediate fires, the monthly metrics. But if you never look up, you will ride right off a cliff.\n\nYou have to force yourself to take the long view. Where is your industry going in three years? What skills does your team need to develop today to be relevant tomorrow? Look up.\n\n#Vision #Leadership #LongGame #Strategy #CEO"
+        "personal": "Riding out in the Colorado plains. When you are on horseback in wide open country, your perspective shifts. You stop looking at the ground right in front of you and start looking at the horizon.\n\nIn business, it is too easy to get trapped looking at the ground. The daily emails, the immediate fires, the monthly metrics. But if you never look up, you will ride right off a cliff.\n\nYou have to force yourself to take the long view. Carve out time every week to look at the horizon. That is where the real strategy lives.\n\n#Leadership #StrategicThinking #Perspective #BusinessStrategy #Mindset"
     },
     9: {
         "business": "\"Attention is the new oil.\" \u2014 Gary Vaynerchuk\n\nGary V has been saying it for a decade, and it has never been more true. But here is the catch: in 2026, attention is harder to earn and easier to lose than ever before.\n\nSocial media management is no longer just scheduling posts. It is community building. It is rapid response. It is understanding the nuance between a LinkedIn thought leadership piece and an Instagram Story.\n\nIf your social media strategy is just broadcasting your sales pitch into the void, you are wasting your time. You have to earn the attention before you can ask for the sale.\n\n#SocialMediaMarketing #GaryVee #AttentionEconomy #BrandBuilding #THATAgency",
@@ -113,6 +131,71 @@ CONTENT = {
     16: {
         "business": "Your SEO team does not talk to your social media team. Your email marketing is completely disconnected from your content strategy. Sound familiar?\n\nThis siloed approach is killing your ROI. Consumers do not experience your brand in silos. They read a blog post, see an Instagram ad, and then get an email. The experience needs to be seamless.\n\nAt THAT Agency, we build integrated, full-funnel marketing strategies. SEO, Content, Social, and Email all working together toward a single objective: revenue. Stop operating in silos.\n\n#IntegratedMarketing #FullFunnel #DigitalStrategy #MarketingROI #THATAgency",
         "personal": "Skiing at Crested Butte with Michelle.\n\nWhen we started THAT Agency 22 years ago, the digital landscape looked completely different. We have navigated dot-com crashes, the rise of social media, the shift to mobile, and now the AI revolution.\n\nThe secret to longevity is not predicting the future perfectly. It is building a foundation strong enough to withstand the shifts, and having the right people by your side to navigate them. Here is to the next 22 years.\n\n#Longevity #BusinessBuilding #Partnership #AgencyLife #CrestedButte"
+    },
+    # ── Days 17-32 (June 11 - June 26) ──────────────────────────────────────────
+    17: {
+        "business": "Google's AI Overviews are now appearing for over 50% of informational searches. What does that mean for your business? It means the \"zero-click\" search is the new reality. Users are getting their answers directly on the search page without ever clicking a link.\n\nIf your SEO strategy is still focused purely on ranking #1 for blue links, you are optimizing for a game that is already over. The new goal is Answer Engine Optimization (AEO)\u2014structuring your content so that AI models cite you as the source. It requires a shift from keyword stuffing to entity authority and structured data.\n\nIs your website ready to be the answer, not just a link? Let's talk about future-proofing your search visibility.\n\n#SEO #AEO #DigitalMarketing #AI #BusinessGrowth #THATAgency",
+        "personal": "In diving, as in business, the real work happens before you ever hit the water. You check your gear, review the plan, and anticipate the variables. Once you are submerged, you execute.\n\nI see too many leaders trying to build the plan while they are already in the deep end. It leads to panic, poor decisions, and wasted resources. Take the time to build the system on dry land. When the pressure hits, you want to rely on your preparation, not your ability to improvise.\n\n#Leadership #Preparation #BusinessStrategy #ScubaDiving #Execution"
+    },
+    18: {
+        "business": "The inbox rules have changed. Email deliverability is not just about technical setup; it is about relevance, proving your message deserves to be read.\n\nWe are seeing a massive shift in email marketing. Blasting the same generic newsletter to your entire list is a fast track to the spam folder. AI is allowing us to move from mass communication to personalized, dynamic content at scale. By leveraging AI to segment audiences and tailor messaging based on behavior, we are seeing open rates and engagement climb.\n\nStop sending noise. Start sending value.\n\n#EmailMarketing #AI #MarketingStrategy #LeadGeneration #THATAgency",
+        "personal": "The summit is the goal, but the climb is where the value is created. Whether it's scaling a peak or scaling an agency, the difficult stretches are what build resilience and capability.\n\nYou don't learn much on the easy days. Embrace the friction. It's the only way to grow.\n\n#GrowthMindset #Leadership #Mountaineering #BusinessGrowth #Resilience"
+    },
+    19: {
+        "business": "AI writes faster. Attention spans shrink. Trust shifts to people, not logos. This is the reality of content marketing in 2026.\n\nAnyone can generate a 1,000-word blog post in seconds. The internet is flooded with commodity content. To stand out, you need E-E-A-T: Experience, Expertise, Authority, and Trust. Your content must offer unique insights, original data, and a distinct point of view.\n\nStop trying to out-publish the machines. Start out-thinking them.\n\n#ContentMarketing #AI #BrandAuthority #MarketingStrategy #THATAgency",
+        "personal": "Sometimes you need to get above the noise to see the full picture. When you are in the weeds of daily operations, every problem feels massive. Stepping back\u2014whether that's flying, climbing, or just taking a strategic retreat\u2014allows you to see the patterns and the path forward.\n\nWhere are you finding your perspective today?\n\n#Perspective #Aviation #Leadership #StrategicThinking #BusinessOwner"
+    },
+    20: {
+        "business": "Local SEO is evolving rapidly. With AI overviews synthesizing local business data, your Google Business Profile is more critical than ever. It's not just about having a profile; it's about having a comprehensive, active, and highly-rated presence.\n\nAI models look for consensus and authority. Are your reviews strong? Is your information consistent across the web? If you want to dominate local search in 2026, you need to feed the AI the right signals.\n\n#LocalSEO #DigitalMarketing #SmallBusiness #AI #THATAgency",
+        "personal": "You can have the best strategy in the world, but if the team isn't rowing in the same direction, you're going nowhere. Alignment requires clear communication, shared goals, and mutual trust.\n\nIt's not something that happens by accident; it requires intentional leadership. How are you keeping your team aligned?\n\n#Teamwork #Leadership #BusinessStrategy #Alignment"
+    },
+    21: {
+        "business": "E-commerce is entering the era of Agentic Search Optimization (ASO). Soon, AI agents won't just find products for consumers; they will make the purchases.\n\nTo win in this environment, your product data must be structured flawlessly. Universal Commerce Protocols and detailed attributes are the new storefront. If an AI agent can't understand your product specs, pricing, and availability instantly, it will buy from your competitor.\n\nIs your e-commerce site ready for machine customers?\n\n#Ecommerce #ASO #AI #DigitalMarketing #THATAgency",
+        "personal": "The landscape is always changing. The weather shifts, the current changes, the market evolves. The organizations that survive aren't the ones that try to fight the current; they are the ones that learn to navigate it.\n\nAdaptability is the ultimate competitive advantage.\n\n#Adaptability #Leadership #ChangeManagement #BusinessGrowth #Exploration"
+    },
+    22: {
+        "business": "\"Brand is the No. 1 CMO priority for 2026.\" Why? Because in a world of AI-generated answers, brand trust is the ultimate differentiator.\n\nSocial media is no longer just a distribution channel; it's a trust-building engine. It's where you demonstrate expertise, engage with your community, and humanize your business. If your social strategy is just broadcasting links, you are missing the point.\n\nBuild the brand, and the algorithms will follow.\n\n#SocialMediaMarketing #BrandBuilding #DigitalStrategy #Marketing #THATAgency",
+        "personal": "Clarity comes from focus. When you are underwater, the distractions of the surface disappear. You are forced to focus on your breathing, your buddy, and your immediate environment.\n\nBusiness requires the same level of intentional focus. Cut the noise. Identify the critical few things that actually move the needle, and ignore the rest.\n\n#Focus #ScubaDiving #Leadership #Productivity #BusinessOwner"
+    },
+    23: {
+        "business": "Silos kill ROI. If your SEO team isn't talking to your content team, and your social team is operating in a vacuum, you are wasting money.\n\nIntegrated marketing is the only way to build a cohesive brand presence that AI models and human customers trust. At THAT Agency, we don't do isolated tactics. We build integrated systems that drive measurable revenue.\n\n#MarketingStrategy #IntegratedMarketing #ROI #BusinessGrowth #THATAgency",
+        "personal": "Success is rarely the result of one massive leap. It's the compounding effect of consistent, disciplined effort over time. 22 years of building THAT Agency has taught me that the long game is the only game worth playing.\n\nStay curious, stay disciplined, and keep moving forward.\n\n#Consistency #Leadership #Entrepreneurship #BusinessGrowth #LongGame"
+    },
+    24: {
+        "business": "\"If you can't measure it, you can't improve it.\" AI is giving us unprecedented access to predictive analytics and customer insights. But data is useless without interpretation.\n\nThe businesses that win in 2026 are the ones that use data to inform strategy, not just report on the past. Are you using your marketing data to look backward, or to steer forward?\n\n#DataAnalytics #MarketingStrategy #AI #BusinessIntelligence #THATAgency",
+        "personal": "Every worthwhile endeavor involves risk. The key is understanding the difference between calculated risk and reckless gambling. In aviation, we mitigate risk through training, checklists, and situational awareness. In business, we mitigate risk through data, strategy, and strong systems.\n\nDon't avoid risk; learn to manage it.\n\n#RiskManagement #Aviation #Leadership #BusinessStrategy #Entrepreneur"
+    },
+    25: {
+        "business": "AI is a powerful tool, but it's not a replacement for human empathy and strategic insight. The best marketing combines the efficiency of AI with the emotional intelligence of human marketers.\n\nUse AI to analyze data, draft outlines, and automate workflows. Use humans to build relationships, craft compelling narratives, and make strategic leaps.\n\n#AI #MarketingStrategy #DigitalMarketing #FutureOfWork #THATAgency",
+        "personal": "You can't run at 100% all the time. Sometimes the most productive thing you can do is step away from the screens and get outside. Nature has a way of resetting the system and providing clarity that you won't find in a spreadsheet.\n\nMake time to unplug.\n\n#WorkLifeBalance #Outdoors #Leadership #MentalHealth #Entrepreneur"
+    },
+    26: {
+        "business": "Lead generation has fundamentally changed. The old playbook of gated PDFs and generic drip campaigns is losing effectiveness. Today's buyers want immediate value and personalized interactions.\n\nWe are using AI-driven conversational tools and highly targeted content to capture and qualify leads faster and more efficiently. Is your lead gen strategy stuck in 2020?\n\n#LeadGeneration #MarketingStrategy #B2BMarketing #SalesFunnel #THATAgency",
+        "personal": "A business that relies entirely on the founder's daily involvement is a job, not an asset. Building scalable systems is the hardest part of entrepreneurship, but it's the only way to achieve true growth.\n\nDocument your processes, empower your team, and build a machine that runs whether you are in the office or on a mountain.\n\n#SystemsThinking #Entrepreneurship #BusinessGrowth #Leadership #Scale"
+    },
+    27: {
+        "business": "Video is no longer optional; it's the baseline. From YouTube to short-form social content, video is how modern consumers prefer to learn and engage. Furthermore, AI models are increasingly citing video transcripts in their overviews.\n\nIf you aren't producing high-quality video content, you are invisible to a massive segment of your audience.\n\n#VideoMarketing #ContentStrategy #DigitalMarketing #BrandVisibility #THATAgency",
+        "personal": "Nothing great is built alone. Whether it's a dive buddy, a co-pilot, or a business partner, having someone you trust implicitly changes the equation.\n\nSurround yourself with people who challenge you, support you, and share your vision.\n\n#Partnership #Teamwork #Leadership #BusinessGrowth #Relationships"
+    },
+    28: {
+        "business": "\"The only constant in SEO is change.\" Google's recent core updates and the rollout of AI Overviews have caused massive volatility. The brands that survive these shifts are the ones with a diversified traffic strategy and a commitment to high-quality, user-centric content.\n\nDon't chase the algorithm; chase the user.\n\n#SEO #AlgorithmUpdate #DigitalMarketing #MarketingStrategy #THATAgency",
+        "personal": "You wouldn't dive with faulty gear, and you shouldn't run a business with outdated tools. Investing in the right technology\u2014whether it's a CRM, an analytics platform, or AI infrastructure\u2014is an investment in your team's efficiency and your company's future.\n\nEquip your team to win.\n\n#Technology #BusinessOperations #Leadership #Efficiency #Entrepreneur"
+    },
+    29: {
+        "business": "Acquiring a new customer is expensive. Retaining an existing one is profitable. Are you putting as much effort into your post-sale marketing as you are into your lead generation?\n\nEmail marketing, personalized content, and proactive customer service are critical for maximizing lifetime value. Don't let a leaky bucket ruin your growth.\n\n#CustomerRetention #MarketingStrategy #BusinessGrowth #LTV #THATAgency",
+        "personal": "The moment you think you know it all is the moment you start falling behind. The digital landscape is evolving faster than ever.\n\nStay curious. Read, experiment, and be willing to unlearn what used to work. The best leaders are lifelong learners.\n\n#LifelongLearning #Leadership #Curiosity #PersonalGrowth #Entrepreneur"
+    },
+    30: {
+        "business": "SEO is a long-term investment, not a short-term expense. While paid ads stop generating traffic the moment you stop paying, a strong organic presence pays dividends for years.\n\nIn the era of AI search, building that foundational authority is more critical than ever. Are you investing in your digital real estate?\n\n#SEO #ROI #DigitalMarketing #BusinessStrategy #THATAgency",
+        "personal": "Every project, every climb, every business venture hits a wall at some point. The difference between success and failure isn't the absence of obstacles; it's the determination to find a way over, under, or through them.\n\nKeep pushing.\n\n#Resilience #Determination #Leadership #BusinessGrowth #Mindset"
+    },
+    31: {
+        "business": "Your customers don't live on just one platform, and your marketing shouldn't either. An effective omnichannel strategy ensures that your message is consistent and reinforcing across search, social, email, and paid channels.\n\nIt's about creating a seamless experience that guides the customer from discovery to conversion.\n\n#Omnichannel #MarketingStrategy #DigitalMarketing #CustomerJourney #THATAgency",
+        "personal": "We spend so much time focused on the next goal that we often forget to celebrate the milestones along the way. Take the time to acknowledge the hard work of your team and the progress you've made.\n\nIt builds morale and fuels the next push.\n\n#TeamCulture #Leadership #Milestones #BusinessGrowth #Gratitude"
+    },
+    32: {
+        "business": "The shift toward AI-driven search and discovery is permanent. Agencies and businesses must adapt early or risk irrelevance. At THAT Agency, our mission is to future-proof our clients' marketing systems against technological disruption.\n\nWe build scalable processes that outperform one-off solutions. Let's build for the future.\n\n#FutureProof #DigitalMarketing #AI #BusinessStrategy #THATAgency",
+        "personal": "There is always another mountain to climb, another depth to explore, another challenge to solve. That's what keeps it interesting.\n\nStay curious, stay disciplined, and always be willing to navigate new frontiers.\n\n#Exploration #Leadership #NextFrontier #Entrepreneurship #Vision"
     },
 }
 
@@ -156,8 +239,8 @@ def main():
     today = date.today()
     delta = (today - START_DATE).days + 1  # Day 1 = start date
 
-    if delta < 1 or delta > 16:
-        log.info(f"Day {delta} is outside the 16-day calendar range. Nothing to post.")
+    if delta < 1 or delta > 32:
+        log.info(f"Day {delta} is outside the 32-day calendar range. Nothing to post.")
         sys.exit(0)
 
     post_type = POST_TYPE
